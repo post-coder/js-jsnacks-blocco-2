@@ -9,9 +9,49 @@ Quando l'utente trova il numero, fateglielo sapere!
 
 */
 
-// numero casuale da 1 a 100 inclusi
-const randomNumber = Math.floor(Math.random() * 100) + 1;
+const secretNumberEl = document.getElementById("secret-number");
 
+
+document.querySelector("#start").addEventListener("click", function() {
+
+    secretNumberEl.classList.remove("finish");
+        
+    // numero casuale da 1 a 100 inclusi
+    const randomNumber = Math.floor(Math.random() * 100) + 1;
+
+    // scrivo in pagina
+    secretNumberEl.innerText = randomNumber;
+
+
+    // dichiariamo una variabile per il numero scelto dall'utente
+    let userNumber;
+
+    // inizializziamo il contatore dei tentativi
+    let count = 0;
+
+    do {
+
+        userNumber = Number(prompt("Indovina il numero"));
+
+        if(userNumber > randomNumber) {
+            
+            alert("Troppo alto");
+
+        } else if (userNumber < randomNumber) {
+
+            alert ("Troppo basso");
+
+        }
+
+        count++;
+
+    } while (userNumber !== randomNumber);
+
+    // l'utente ha indovinato
+    console.log("Bravo hai vinto! Il numero era " + randomNumber + ". Hai fatto " + count + " tentativi.");
+    secretNumberEl.classList.add("finish");
+
+});
 
 // se il numero estratto è maggiore
     // scrivi "più alto"
@@ -20,30 +60,3 @@ const randomNumber = Math.floor(Math.random() * 100) + 1;
 // chiedi un altro numero
 
 // sinchè il numero indovinato non è uguale al numero estratto
-
-// dichiariamo una variabile per il numero scelto dall'utente
-let userNumber;
-
-// inizializziamo il contatore dei tentativi
-let count = 0;
-
-do {
-
-    userNumber = Number(prompt("Indovina il numero"));
-
-    if(userNumber > randomNumber) {
-        
-        alert("Troppo alto");
-
-    } else if (userNumber < randomNumber) {
-
-        alert ("Troppo basso");
-
-    }
-
-    count++;
-
-} while (userNumber !== randomNumber);
-
-// l'utente ha indovinato
-console.log("Bravo hai vinto! Il numero era " + randomNumber + ". Hai fatto " + count + " tentativi.");
